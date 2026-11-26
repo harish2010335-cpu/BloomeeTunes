@@ -67,12 +67,7 @@ jobs:
       - name: Configure Release Signing
         run: |
           keytool -genkeypair -v -keystore android/bloomee.jks -alias bloomee -keyalg RSA -keysize 2048 -validity 10000 -storepass bloomee123 -keypass bloomee123 -dname "CN=Bloomee, OU=Custom, O=Bloomee, L=City, S=State, C=US"
-          cat << 'EOF' > android/key.properties
-          storePassword=bloomee123
-          keyPassword=bloomee123
-          keyAlias=bloomee
-          storeFile=bloomee.jks
-          EOF
+          printf "storePassword=bloomee123\nkeyPassword=bloomee123\nkeyAlias=bloomee\nstoreFile=bloomee.jks\n" > android/key.properties
 
       - name: Build Android APKs
         run: flutter build apk --release --split-per-abi --build-number "$GITHUB_RUN_NUMBER"
