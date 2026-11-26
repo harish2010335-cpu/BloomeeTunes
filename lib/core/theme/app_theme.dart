@@ -17,14 +17,15 @@ class AppTheme {
   static const fontAwesomeSolidFont =
       TextStyle(fontFamily: "FontAwesome-Solids");
 
-  // ── Colors ──────────────────────────────────────────────────────────────────
-  static const themeColor = Color(0xFF0A040C);
-  static const primaryColor1 = Color(0xFFDAEAF7);
-  static const primaryColor2 = Color.fromARGB(255, 242, 231, 240);
-  static const accentColor1 = Color(0xFF0EA5E0);
-  static const accentColor1light = Color(0xFF18C9ED);
-  static const accentColor2 = Color(0xFFFE385E);
-  static const successColor = Color(0xFF5EFF43);
+    // — Colors
+  static const themeColor = Color(0xFF060B14);        // Deep midnight background
+  static const primaryColor1 = Color(0xFFE6F4FA);     // Crisp ice-white main text
+  static const primaryColor2 = Color(0xFF94B0C7);     // Muted slate-blue secondary text
+  static const accentColor1 = Color(0xFF00B8D4);      // Deep cyan secondary accent
+  static const accentColor1light = Color(0xFF18FFFF); // Electric cyan glow highlight
+  static const accentColor2 = Color(0xFF00E5FF);      // Vibrant Midnight Cyan primary accent
+  static const successColor = Color(0xFF00E676);      // Mint-cyan success indicator
+
 
   // ── Theme Data ───────────────────────────────────────────────────────────────
   ThemeData get defaultThemeData {
@@ -32,7 +33,7 @@ class AppTheme {
       primary: accentColor2,
       secondary: accentColor1,
       surface: themeColor,
-      surfaceContainerHighest: Color(0xFF1A111B),
+      surfaceContainerHighest: Color(0xFF111C2E),
       onPrimary: primaryColor1,
       onSecondary: primaryColor1,
       onSurface: primaryColor1,
