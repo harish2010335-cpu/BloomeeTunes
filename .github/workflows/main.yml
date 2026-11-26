@@ -65,43 +65,14 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Configure Release Signing
-        env:
-          KEY_STORE: ${{ secrets.KEY_STORE }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          umask 077
-          python3 - <<'PY'
-          import base64
-          import os
-          from pathlib import Path
-
-          def required(name):
-              value = os.environ.get(name, '')
-              if not value:
-                  raise SystemExit(f'{name} secret is required for release signing')
-              return value
-
-          def property_value(name):
-              # Java Properties uses UTF-16 Unicode escapes, including surrogate pairs.
-              value = required(name).encode('utf-16-be')
-              return ''.join('\\u' + value[i:i + 2].hex() for i in range(0, len(value), 2))
-
-          encoded_store = ''.join(required('KEY_STORE').split())
-          keystore = base64.b64decode(encoded_store, validate=True)
-          if not keystore:
-              raise SystemExit('KEY_STORE must contain a nonempty base64 keystore')
-          properties = '\n'.join(
-              key + '=' + property_value(secret) for key, secret in (
-                  ('keyPassword', 'KEY_PASSWORD'),
-                  ('storePassword', 'STORE_PASSWORD'),
-                  ('keyAlias', 'KEY_ALIAS'),
-              )
-          ) + '\n'
-          Path('android/bloomee.jks').write_bytes(keystore)
-          Path('android/key.properties').write_text(properties, encoding='ascii')
-          PY
+          keytool -genkeypair -v -keystore android/bloomee.jks -alias bloomee -keyalg RSA -keysize 2048 -validity 10000 -storepass bloomee123 -keypass bloomee123 -dname "CN=Bloomee, OU=Custom, O=Bloomee, L=City, S=State, C=US"
+          cat << 'EOF' > android/key.properties
+          storePassword=bloomee123
+          keyPassword=bloomee123
+          keyAlias=bloomee
+          storeFile=bloomee.jks
+          EOF
 
       - name: Build Android APKs
         run: flutter build apk --release --split-per-abi --build-number "$GITHUB_RUN_NUMBER"
