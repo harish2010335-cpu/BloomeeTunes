@@ -101,10 +101,12 @@ class AppTheme {
       searchBarTheme: const SearchBarThemeData(
         backgroundColor: WidgetStatePropertyAll(themeColor),
       ),
-      popupMenuTheme: const PopupMenuThemeData(
-        color: Color.fromARGB(255, 23, 18, 25),
+            popupMenuTheme: const PopupMenuThemeData(
+        color: themeColor,
         textStyle: TextStyle(color: primaryColor1),
       ),
+
+
       dropdownMenuTheme: const DropdownMenuThemeData(
         menuStyle: MenuStyle(
           backgroundColor: WidgetStatePropertyAll(themeColor),
