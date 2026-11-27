@@ -17,23 +17,23 @@ class AppTheme {
   static const fontAwesomeSolidFont =
       TextStyle(fontFamily: "FontAwesome-Solids");
 
-    // — Colors
-  static const themeColor = Color(0xFF060B14);        // Deep midnight background
-  static const primaryColor1 = Color(0xFFE6F4FA);     // Crisp ice-white main text
-  static const primaryColor2 = Color(0xFF94B0C7);     // Muted slate-blue secondary text
-  static const accentColor1 = Color(0xFF00B8D4);      // Deep cyan secondary accent
-  static const accentColor1light = Color(0xFF18FFFF); // Electric cyan glow highlight
-  static const accentColor2 = Color(0xFF00E5FF);      // Vibrant Midnight Cyan primary accent
-  static const successColor = Color(0xFF00E676);      // Mint-cyan success indicator
+  // ── Colors ──────────────────────────────────────────────────────────────────
+  static const themeColor = Color(0xFF002B36); // Rich dark midnight teal-cyan
 
+  static const primaryColor1 = Color(0xFFD8F3F8);     // Crisp icy-cyan white text/icons
+  static const primaryColor2 = Color.fromARGB(255, 224, 244, 248);
+  static const accentColor1 = Color(0xFF008B8B);      // Classic Midnight Cyan accent
+  static const accentColor1light = Color(0xFF00B8D4); // Bright cyan highlight/hover
+  static const accentColor2 = Color(0xFFFE385E);      // Secondary coral/red highlight
+  static const successColor = Color(0xFF5EFF43);
 
   // ── Theme Data ───────────────────────────────────────────────────────────────
   ThemeData get defaultThemeData {
-    const darkScheme = ColorScheme.dark(
-      primary: accentColor2,
-      secondary: accentColor1,
+        const darkScheme = ColorScheme.dark(
+      primary: accentColor1,
+      secondary: accentColor1light,
       surface: themeColor,
-      surfaceContainerHighest: Color(0xFF111C2E),
+      surfaceContainerHighest: Color(0xFF073B46),
       onPrimary: primaryColor1,
       onSecondary: primaryColor1,
       onSurface: primaryColor1,
@@ -43,30 +43,32 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: themeColor,
       dialogBackgroundColor: themeColor,
-      primaryColorDark: accentColor2,
+      primaryColorDark: accentColor1,
       fontFamily: 'Gilroy',
-      primarySwatch: MaterialColor(
-        accentColor2.value,
+           primarySwatch: MaterialColor(
+        accentColor1.value,
         {
-          50: accentColor2.withValues(alpha: 0.1),
-          100: accentColor2.withValues(alpha: 0.2),
-          200: accentColor2.withValues(alpha: 0.3),
-          300: accentColor2.withValues(alpha: 0.4),
-          400: accentColor2.withValues(alpha: 0.5),
-          500: accentColor2.withValues(alpha: 0.6),
-          600: accentColor2.withValues(alpha: 0.7),
-          700: accentColor2.withValues(alpha: 0.8),
-          800: accentColor2.withValues(alpha: 0.9),
-          900: accentColor2,
+          50: accentColor1.withValues(alpha: 0.1),
+          100: accentColor1.withValues(alpha: 0.2),
+          200: accentColor1.withValues(alpha: 0.3),
+          300: accentColor1.withValues(alpha: 0.4),
+          400: accentColor1.withValues(alpha: 0.5),
+          500: accentColor1.withValues(alpha: 0.6),
+          600: accentColor1.withValues(alpha: 0.7),
+          700: accentColor1.withValues(alpha: 0.8),
+          800: accentColor1.withValues(alpha: 0.9),
+          900: accentColor1.withValues(alpha: 1.0),
         },
       ),
-      colorScheme: darkScheme.copyWith(
-        primary: accentColor2,
-        secondary: accentColor2,
+
+            colorScheme: darkScheme.copyWith(
+        primary: accentColor1,
+        secondary: accentColor1light,
       ),
+
       iconTheme: const IconThemeData(color: primaryColor1),
       scrollbarTheme: ScrollbarThemeData(
-        thumbColor: WidgetStateProperty.all(accentColor2),
+        thumbColor: WidgetStateProperty.all(accentColor1),
         interactive: true,
         radius: const Radius.circular(10),
         thickness: WidgetStateProperty.all(5),
