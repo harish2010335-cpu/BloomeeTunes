@@ -201,7 +201,7 @@ class ChartCarouselViewState extends State<ChartCarouselView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _tickersOn = TickerMode.valuesOf(context).enabled;
+    _tickersOn = TickerMode.of(context);
     _sync();
   }
 
